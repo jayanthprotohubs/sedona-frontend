@@ -46,9 +46,9 @@ const ProductDisplay = (props) => {
           </div>
         </div>
         <div className="productdisplay-right-description">
-          A lightweight, usually knitted, pullover shirt, close-fitting and with
-          a round neckline and short sleeves, worn as an undershirt or outer
-          garment.
+          A lightweight, usually knitted, low-top shoe featuring a snug fit,
+          with a round toe and minimalistic design, suitable for both casual and
+          athletic wear.
         </div>
         <div className="productdisplay-right-size">
           <h1>Select Size</h1>
@@ -68,7 +68,7 @@ const ProductDisplay = (props) => {
           ADD TO CART
         </button>
         <p className="productdisplay-right-category">
-          <span>Category :</span> Women, T-shirt, Crop Top
+          <span>Category :</span> Footwear, Shoes, Sneakers
         </p>
         <p className="productdisplay-right-category">
           <span>Tags :</span> Modern, Latest
