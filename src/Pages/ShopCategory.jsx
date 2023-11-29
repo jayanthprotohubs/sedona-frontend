@@ -5,19 +5,40 @@ import React, { useEffect, useState } from "react";
 import Item from "../Components/Item/Item";
 import { Link } from "react-router-dom";
 import dropdown_icon from "../Components/Assets/dropdown_icon.png";
+import getImageMapping from "../Components/Helpers/index";
 
 const ShopCategory = (props) => {
   const [allproducts, setAllProducts] = useState([]);
 
-  const fetchInfo = () => {
-    fetch("https://sedona-backend.onrender.com/allproducts")
-      .then((res) => res.json())
-      .then((data) => setAllProducts(data));
-  };
+  const images = getImageMapping();
 
   useEffect(() => {
+    const fetchInfo = () => {
+      fetch("https://sedona-backend.onrender.com/allproducts")
+        .then((res) => res.json())
+        .then((data) => {
+          let mappedData = data?.map((row, index) => {
+            const image = images?.filter((k) => k?.id === row?.id)?.[0]?.image;
+            return {
+              ...row,
+              image: image,
+            };
+          });
+          setAllProducts(mappedData);
+        });
+    };
     fetchInfo();
+
+    window.scrollTo(0, 0);
   }, []);
+
+  // useEffect(() => {
+  //   setAllProducts(
+
+  //   );
+  // }, [allproducts]);
+
+  console.log(allproducts);
 
   return (
     <div className="shopcategory">

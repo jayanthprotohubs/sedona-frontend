@@ -47,6 +47,7 @@
 .hero-latest-btn:hover div{
     padding: 10px;
     transition: 1s;
+    cursor: pointer;
   }
 .hero-right {
   flex: 1;

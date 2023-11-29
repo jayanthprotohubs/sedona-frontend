@@ -17,7 +17,13 @@ const Hero = () => {
           </div>
           <p>Sedona</p>
         </div>
-        <div className="hero-latest-btn">
+        <div
+          className="hero-latest-btn"
+          onClick={() => {
+            const element = document?.getElementById("NewCollections");
+            if (element) element.scrollIntoView({ behavior: "smooth" });
+          }}
+        >
           <div>Latest Collection</div>
           <img src={arrow_icon} alt="" />
         </div>

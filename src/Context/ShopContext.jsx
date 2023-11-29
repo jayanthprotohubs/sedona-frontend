@@ -1,9 +1,13 @@
 import React, { createContext, useEffect, useState } from "react";
 
+import getImageMapping from "../Components/Helpers/index";
+
 export const ShopContext = createContext(null);
 
 const ShopContextProvider = (props) => {
   const [products, setProducts] = useState([]);
+
+  const images = getImageMapping();
 
   const getDefaultCart = () => {
     let cart = {};
@@ -18,7 +22,16 @@ const ShopContextProvider = (props) => {
   useEffect(() => {
     fetch("https://sedona-backend.onrender.com/allproducts")
       .then((res) => res.json())
-      .then((data) => setProducts(data));
+      .then((data) => {
+        let mappedData = data?.map((row, index) => {
+          const image = images?.filter((k) => k?.id === row?.id)?.[0]?.image;
+          return {
+            ...row,
+            image: image,
+          };
+        });
+        setProducts(mappedData);
+      });
 
     if (localStorage.getItem("auth-token")) {
       fetch("https://sedona-backend.onrender.com/getcart", {
